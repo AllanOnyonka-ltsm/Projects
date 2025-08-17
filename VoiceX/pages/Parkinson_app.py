@@ -1,14 +1,29 @@
 import streamlit as st
 import numpy as np
 import librosa
-import pandas as pd
-import joblib
-from streamlit_webrtc import WebRtcMode, webrtc_streamer
-import av
+import pickle
 import io
-from scipy.io import wavfile
+import tempfile
+import os
+import time
 import warnings
-warnings.filterwarnings("ignore")
+import pandas as pd
+import plotly.graph_objects as go
+from audio_recorder_streamlit import audio_recorder
+import soundfile as sf
+import noisereduce as nr
+from datetime import datetime
+import sklearn  # Fixed: was missing space
+from streamlit_webrtc import webrtc_streamer, AudioProcessorBase
+import plotly.express as px
+from PIL import Image
+import torch
+import torch.nn as nn
+import torchvision.models as models
+import torchvision.transforms as transforms
+import threading
+from collections import deque
+import gc
 
 # Parkinson's feature extraction function
 def extract_parkinsons_features(y, sr):

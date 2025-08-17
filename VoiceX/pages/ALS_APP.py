@@ -13,8 +13,17 @@ from audio_recorder_streamlit import audio_recorder
 import soundfile as sf
 import noisereduce as nr
 from datetime import datetime
-import sklearn
-
+import sklearn  # Fixed: was missing space
+from streamlit_webrtc import webrtc_streamer, AudioProcessorBase
+import plotly.express as px
+from PIL import Image
+import torch
+import torch.nn as nn
+import torchvision.models as models
+import torchvision.transforms as transforms
+import threading
+from collections import deque
+import gc
 # Suppress warnings for cleaner UI (after handling critical ones)
 warnings.filterwarnings('ignore', category=UserWarning)
 warnings.filterwarnings('ignore', category=FutureWarning)

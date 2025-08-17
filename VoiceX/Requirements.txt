@@ -1,59 +1,35 @@
-# Production Requirements with Version Pinning
-# Generated for Breath Sound Classification App
+# Core Streamlit and web components
+streamlit>=1.28.0
+streamlit-webrtc>=0.47.0
+audio-recorder-streamlit>=0.0.8
 
-# Core Framework
-streamlit==1.29.0
-streamlit-webrtc==0.47.1
-Scikit-learn version: 1.6.1
-# Audio Processing Stack
-librosa==0.10.1
-soundfile==0.12.1
-audioread==3.0.1
-resampy==0.4.2  # Used by librosa for resampling
+# Data processing and scientific computing
+numpy>=1.24.0
+pandas>=1.5.0
+scikit-learn>=1.3.0
 
-# Deep Learning Framework
-torch==2.1.1
-torchvision==0.16.1
-torchaudio==2.1.1
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.0
+noisereduce>=3.0.0
 
-# Image Processing
-Pillow==10.1.0
+# Visualization
+plotly>=5.15.0
 
-# Scientific Computing
-numpy==1.24.4
-scipy==1.11.4
+# Image processing
+Pillow>=9.5.0
 
-# WebRTC and Media Processing
-aiortc==1.6.0
-av==10.0.0
+# Machine Learning - PyTorch
+torch>=2.0.0
+torchvision>=0.15.0
+torchaudio>=2.0.0
 
-# Utilities
-typing-extensions==4.8.0
-packaging>=20.0
+# System and utility packages
+setuptools>=65.0.0
+wheel>=0.38.0
 
-# Optional Dependencies (uncomment if needed)
-# matplotlib==3.8.2
-# pandas==2.1.4
-# scikit-learn==1.3.2
+# Audio codec support (may be needed for librosa)
+ffmpeg-python>=0.2.0
 
-# Development Dependencies (uncomment for development)
-# pytest==7.4.3
-# black==23.11.0
-# flake8==6.1.0
-
-# System-specific notes:
-# On Ubuntu/Debian: sudo apt-get update && sudo apt-get install libsndfile1 ffmpeg libsm6 libxext6
-# On CentOS/RHEL: sudo yum install libsndfile ffmpeg
-# On macOS: brew install libsndfile ffmpeg (if using Homebrew)
-
-# For GPU support (CUDA 11.8 example):
-# torch==2.1.1+cu118
-# torchvision==0.16.1+cu118  
-# torchaudio==2.1.1+cu118
-# --extra-index-url https://download.pytorch.org/whl/cu118
-
-# For GPU support (CUDA 12.1 example):
-# torch==2.1.1+cu121
-# torchvision==0.16.1+cu121
-# torchaudio==2.1.1+cu121
-# --extra-index-url https://download.pytorch.org/whl/cu121
+# For better audio handling on some systems
+pyaudio>=0.2.11
