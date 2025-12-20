@@ -228,13 +228,13 @@ col1, col2 = st.columns([2, 1])
 
 with col1:
     st.info("""
-        🎤 **Quick Recording**:
+        **Quick Recording**:
         1. Click 'Start' → Record 2-3 seconds → Click 'Stop'
         2. Click 'Process' for instant analysis
     """)
 
 with col2:
-    if st.button("🚀 Process Recording", type="primary") and ctx.audio_processor:
+    if st.button("Process Recording", type="primary") and ctx.audio_processor:
         # Use spinner for better UX without fake delays
         with st.spinner("Analyzing..."):
             result, spec_img = ctx.audio_processor.process_audio_and_generate_spectrogram()
@@ -251,7 +251,7 @@ with col2:
             st.warning(result)
 
 # Performance tips
-with st.expander("⚡ Performance Tips"):
+with st.expander("Performance Tips"):
     st.markdown("""
     - **GPU Acceleration**: Using CUDA if available
     - **Reduced Resolution**: Optimized spectrogram parameters

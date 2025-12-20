@@ -31,7 +31,6 @@ warnings.filterwarnings('ignore', category=FutureWarning)
 # Page configuration
 st.set_page_config(
     page_title="ALS Audio Detection",
-    page_icon="🧠",
     layout="wide"
 )
 
@@ -84,7 +83,7 @@ def load_model_and_scaler():
     # Check if there's a version mismatch
     if training_version and current_version != training_version:
         warning_msg = (
-            f"⚠️ Version Mismatch Detected!\n\n"
+            f"Version Mismatch Detected!\n\n"
             f"• Model trained with: scikit-learn {training_version}\n"
             f"• Current environment: scikit-learn {current_version}\n\n"
             f"This can lead to invalid predictions. You should either:\n"
@@ -374,7 +373,7 @@ def create_feature_importance_plot(model, feature_vector_scaled):
         return None
 
 def main():
-    st.title("🧠 ALS Audio Detection System")
+    st.title("ALS Audio Detection System")
     st.markdown("Advanced analysis of voice patterns for early ALS detection")
     st.markdown("---")
     
@@ -382,7 +381,7 @@ def main():
     current_version, training_version = check_sklearn_version()
     
     if training_version and current_version != training_version:
-        st.warning(f"⚠️ Version Mismatch: Model trained with scikit-learn {training_version}, current version is {current_version}")
+        st.warning(f"Version Mismatch: Model trained with scikit-learn {training_version}, current version is {current_version}")
         st.info("This can lead to invalid predictions. Consider downgrading: `pip install scikit-learn=={training_version}`")
     
     # Load model and scaler
@@ -405,7 +404,7 @@ def main():
     
     # Sidebar instructions
     with st.sidebar:
-        st.header("📋 Instructions")
+        st.header("Instructions")
         st.markdown("""
         **Recording Guidelines:**
         
@@ -444,7 +443,7 @@ def main():
     # Function to handle recording with duration feedback
     def handle_recording(column, vowel, color, key):
         with column:
-            st.subheader(f"🅰️ Vowel /{vowel}/ Recording")
+            st.subheader(f"Vowel /{vowel}/ Recording")
             st.info(f"Say '{'ahhhhh' if vowel == 'a' else 'eeeeee'}' for {MIN_DURATION}-{MAX_DURATION} seconds")
             
             # Recording status
@@ -468,7 +467,7 @@ def main():
             if audio_bytes:
                 # Save to session state
                 st.session_state[f"vowel_{vowel}_audio"] = audio_bytes
-                st.success(f"✅ /{vowel}/ recording captured!")
+                st.success(f"/{vowel}/ recording captured!")
                 
                 # Process and visualize
                 audio_data, sr = process_audio_bytes(audio_bytes, st.empty(), st.empty())
@@ -499,18 +498,18 @@ def main():
     audio_bytes_i = handle_recording(col2, "i", "#3498db", "vowel_i")
     
     # Clear recordings button
-    if st.button("🗑️ Clear All Recordings", type="secondary"):
+    if st.button("Clear All Recordings", type="secondary"):
         st.session_state.vowel_a_audio = None
         st.session_state.vowel_i_audio = None
         st.rerun()
     
     # Analysis section
     st.markdown("---")
-    st.header("🔬 ALS Analysis")
+    st.header("ALS Analysis")
     
     if st.session_state.vowel_a_audio and st.session_state.vowel_i_audio:
         
-        if st.button("🚀 Analyze Audio for ALS Detection", type="primary", use_container_width=True):
+        if st.button("Analyze Audio for ALS Detection", type="primary", use_container_width=True):
             # Create progress tracking elements
             progress_bar = st.progress(0)
             status_text = st.empty()
@@ -602,10 +601,10 @@ def main():
                 
                 with col1:
                     if prediction == 1:  # Assuming 1 = ALS positive
-                        st.error("⚠️ ALS Risk Detected")
+                        st.error("ALS Risk Detected")
                         confidence = prediction_proba[1] * 100
                     else:
-                        st.success("✅ No ALS Risk Detected")
+                        st.success("No ALS Risk Detected")
                         confidence = prediction_proba[0] * 100
                 
                 with col2:
@@ -619,7 +618,7 @@ def main():
                     st.caption("Risk Level")
                 
                 # Feature importance
-                st.subheader("🧠 Model Insights")
+                st.subheader("Model Insights")
                 importance_plot = create_feature_importance_plot(model, feature_vector_scaled)
                 if importance_plot:
                     st.plotly_chart(importance_plot, use_container_width=True)
@@ -627,7 +626,7 @@ def main():
                     st.info("Feature importance not available for this model type.")
                 
                 # Feature breakdown
-                st.subheader("📊 Feature Analysis")
+                st.subheader("Feature Analysis")
                 
                 # Create comparison DataFrame
                 feature_df = pd.DataFrame({
@@ -645,13 +644,13 @@ def main():
                         'Differential CC Index 6'
                     ],
                     'Value': [combined_features[name] for name in FEATURE_NAMES],
-                    'Status': ['⚠️ High' if (name in ['PVI_a', 'PFR_a', 'PVI_i'] and combined_features[name] > 0.5) 
+                    'Status': ['High' if (name in ['PVI_a', 'PFR_a', 'PVI_i'] and combined_features[name] > 0.5) 
                               else 'Normal' for name in FEATURE_NAMES]
                 })
                 
                 # Apply styling to DataFrame
                 def color_status(val):
-                    color = '#e74c3c' if val == '⚠️ High' else '#27ae60'
+                    color = '#e74c3c' if val == 'High' else '#27ae60'
                     return f'color: {color}'
                 
                 styled_df = feature_df.style.applymap(
@@ -664,7 +663,7 @@ def main():
                 st.dataframe(styled_df, use_container_width=True)
                 
                 # Probability breakdown
-                st.subheader("📈 Prediction Confidence")
+                st.subheader("Prediction Confidence")
                 
                 prob_df = pd.DataFrame({
                     'Class': ['Normal', 'ALS Risk'],
@@ -683,7 +682,7 @@ def main():
                 st.plotly_chart(fig_prob, use_container_width=True)
                 
                 # Clinical interpretation
-                st.subheader("📝 Clinical Interpretation")
+                st.subheader("Clinical Interpretation")
                 
                 if prediction == 1:
                     st.markdown("""
@@ -709,7 +708,7 @@ def main():
                 
                 # Save results option
                 st.markdown("---")
-                st.subheader("💾 Save Analysis Results")
+                st.subheader("Save Analysis Results")
                 
                 if st.button("Save Results for Medical Review", type="primary", use_container_width=True):
                     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -731,7 +730,7 @@ def main():
                     
                     # Auto-download after save
                     st.download_button(
-                        label="📥 Download Analysis Report (JSON)",
+                        label="Download Analysis Report (JSON)",
                         data=pd.Series(results).to_json(),
                         file_name=f"als_analysis_{timestamp}.json",
                         mime="application/json",
@@ -747,7 +746,7 @@ def main():
                 st.code(traceback.format_exc())
     
     else:
-        st.info("👆 Please record both vowel sounds (/a/ and /i/) to proceed with analysis")
+        st.info("Please record both vowel sounds (/a/ and /i/) to proceed with analysis")
         
         missing = []
         if not st.session_state.vowel_a_audio:
@@ -761,14 +760,14 @@ def main():
         col1, col2 = st.columns(2)
         with col1:
             if not st.session_state.vowel_a_audio:
-                st.markdown("❌ **/a/ recording not completed**")
+                st.markdown("**/a/ recording not completed**")
             else:
-                st.markdown("✅ /a/ recording completed")
+                st.markdown("/a/ recording completed")
         with col2:
             if not st.session_state.vowel_i_audio:
-                st.markdown("❌ **/i/ recording not completed**")
+                st.markdown("**/i/ recording not completed**")
             else:
-                st.markdown("✅ /i/ recording completed")
+                st.markdown("/i/ recording completed")
 
 if __name__ == "__main__":
     main()

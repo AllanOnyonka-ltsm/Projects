@@ -27,7 +27,6 @@ import gc
 # Set page config
 st.set_page_config(
     page_title="Voice Pathology Detection System",
-    page_icon="🎙️",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -146,7 +145,7 @@ def main():
     # --------------------------
     # Hero Section
     # --------------------------
-    st.markdown("<h1 class='main-header'>🎙️ Voice Feature Analysis for Early Pathology Detection</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='main-header'>Voice Feature Analysis for Early Pathology Detection</h1>", unsafe_allow_html=True)
     st.markdown("""
     <p style="text-align: center; font-size: 1.2rem; color: #34495e; margin-bottom: 2rem;">
         AI-powered voice analysis for early detection of neurological and respiratory diseases.
@@ -170,7 +169,7 @@ def main():
                 <p style="margin: 0.25rem 0; font-weight: 500;">Earlier Diagnosis</p>
             </div>
             <div>
-                <h2 style="color: #f39c12; margin: 0;">📱 Remote</h2>
+                <h2 style="color: #f39c12; margin: 0;">Remote</h2>
                 <p style="margin: 0.25rem 0; font-weight: 500;">Non-Invasive Screening</p>
             </div>
         </div>
@@ -181,12 +180,12 @@ def main():
     # --------------------------
     # Why Early Detection Matters
     # --------------------------
-    st.markdown("<h2 class='sub-header'>🚨 Why Early Detection Matters</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Why Early Detection Matters</h2>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="benefit-grid">
         <div class="benefit-item">
-            <h3>🎯 Earlier Intervention</h3>
+            <h3>Earlier Intervention</h3>
             <p>Voice changes can appear <strong>5–10 years</strong> before clinical symptoms:</p>
             <ul>
                 <li>Preventive treatments to slow progression</li>
@@ -195,7 +194,7 @@ def main():
             </ul>
         </div>
         <div class="benefit-item">
-            <h3>💰 Healthcare Cost Reduction</h3>
+            <h3>Healthcare Cost Reduction</h3>
             <p>Early detection reduces long-term burden:</p>
             <ul>
                 <li>Fewer emergency interventions</li>
@@ -204,7 +203,7 @@ def main():
             </ul>
         </div>
         <div class="benefit-item">
-            <h3>📊 Objective Biomarkers</h3>
+            <h3>Objective Biomarkers</h3>
             <p>Voice provides measurable, repeatable data:</p>
             <ul>
                 <li>Reduces subjective bias</li>
@@ -213,7 +212,7 @@ def main():
             </ul>
         </div>
         <div class="benefit-item">
-            <h3>🌍 Global Accessibility</h3>
+            <h3>Global Accessibility</h3>
             <p>Democratizes screening:</p>
             <ul>
                 <li>No specialized equipment needed</li>
@@ -228,7 +227,7 @@ def main():
     # --------------------------
     # Global Impact
     # --------------------------
-    st.markdown("<h2 class='sub-header'>📈 Global Health Impact</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Global Health Impact</h2>", unsafe_allow_html=True)
 
     col1, col2, col3, col4 = st.columns(4)
 
@@ -253,12 +252,12 @@ def main():
     # --------------------------
     # Target Pathologies
     # --------------------------
-    st.markdown("<h2 class='sub-header'>🎯 Target Pathologies & Voice Signs</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Target Pathologies & Voice Signs</h2>", unsafe_allow_html=True)
 
     pathologies = [
         {
             "class": "als",
-            "title": "🧠 ALS (Lou Gehrig’s Disease)",
+            "title": "ALS (Lou Gehrig's Disease)",
             "changes": [
                 "Progressive speech deterioration",
                 "Reduced speech rate",
@@ -266,16 +265,16 @@ def main():
                 "Decreased vocal intensity"
             ],
             "features": [
-                "📊 Jitter/Shimmer: Voice instability",
-                "🎵 Formant frequencies: Articulation precision",
-                "⏱️ Speech timing: Pause patterns",
-                "📈 Spectral analysis: Vocal tract changes"
+                "Jitter/Shimmer: Voice instability",
+                "Formant frequencies: Articulation precision",
+                "Speech timing: Pause patterns",
+                "Spectral analysis: Vocal tract changes"
             ],
             "note": "Voice changes appear 18–24 months before visible symptoms."
         },
         {
             "class": "parkinsons",
-            "title": "🤝 Parkinson’s Disease",
+            "title": "Parkinson's Disease",
             "changes": [
                 "Hypophonia (reduced volume)",
                 "Monotone speech",
@@ -283,16 +282,16 @@ def main():
                 "Breathy voice quality"
             ],
             "features": [
-                "🎼 F0 variations: Pitch control",
-                "🔊 HNR: Voice quality",
-                "📋 Prosodic features: Rhythm & intonation",
-                "🎯 Vocal dynamics: Amplitude modulation"
+                "F0 variations: Pitch control",
+                "HNR: Voice quality",
+                "Prosodic features: Rhythm & intonation",
+                "Vocal dynamics: Amplitude modulation"
             ],
             "note": "Voice symptoms in 90% of patients — often the first sign."
         },
         {
             "class": "lung",
-            "title": "🫁 Respiratory Diseases (COPD/Asthma)",
+            "title": "Respiratory Diseases (COPD/Asthma)",
             "changes": [
                 "Breathiness during speech",
                 "Shorter sustained vowels",
@@ -300,10 +299,10 @@ def main():
                 "Cough-related irritation"
             ],
             "features": [
-                "🌊 Spectral energy: Frequency distribution",
-                "💨 Breathing patterns: Speech-respiration sync",
-                "⏳ Voice onset time: Coordination",
-                "🔄 Airflow dynamics: Respiratory support"
+                "Spectral energy: Frequency distribution",
+                "Breathing patterns: Speech-respiration sync",
+                "Voice onset time: Coordination",
+                "Airflow dynamics: Respiratory support"
             ],
             "note": "Can detect airway changes before spirometry shows abnormalities."
         }
@@ -333,7 +332,7 @@ def main():
     # --------------------------
     # Research Evidence
     # --------------------------
-    st.markdown("<h2 class='sub-header'>📚 Scientific Evidence</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Scientific Evidence</h2>", unsafe_allow_html=True)
 
     research_data = {
         'Study': ['Tsanas et al. (2012)', 'Rusz et al. (2013)', 'Godino-Llorente et al. (2006)',
@@ -368,14 +367,14 @@ def main():
     # --------------------------
     # Technology Overview
     # --------------------------
-    st.markdown("<h2 class='sub-header'>🔬 Technology Overview</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Technology Overview</h2>", unsafe_allow_html=True)
 
     col1, col2 = st.columns(2)
 
     with col1:
         st.markdown("""
         <div class="card">
-            <h3>🎵 Voice Signal Processing</h3>
+            <h3>Voice Signal Processing</h3>
             <ol>
                 <li><strong>Audio Acquisition:</strong> 16kHz+ recording</li>
                 <li><strong>Preprocessing:</strong> Noise reduction, normalization</li>
@@ -390,7 +389,7 @@ def main():
     with col2:
         st.markdown("""
         <div class="card">
-            <h3>🤖 Machine Learning Approach</h3>
+            <h3>Machine Learning Approach</h3>
             <ul>
                 <li><strong>Deep Learning:</strong> CNNs, LSTMs for temporal patterns</li>
                 <li><strong>Ensemble Models:</strong> Random Forest, XGBoost</li>
@@ -406,7 +405,7 @@ def main():
     # --------------------------
     # Call to Action
     # --------------------------
-    st.markdown("<h2 class='sub-header'>🚀 Next Steps</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='sub-header'>Next Steps</h2>", unsafe_allow_html=True)
 
     st.markdown("""
     <div class="highlight-box">
@@ -415,19 +414,19 @@ def main():
         </p>
         <div class="benefit-grid">
             <div class="benefit-item">
-                <h4>🎯 Feature Extraction</h4>
+                <h4>Feature Extraction</h4>
                 <p>Implement advanced signal processing</p>
             </div>
             <div class="benefit-item">
-                <h4>🤖 ML Model Training</h4>
+                <h4>ML Model Training</h4>
                 <p>Train and validate detection algorithms</p>
             </div>
             <div class="benefit-item">
-                <h4>📊 Clinical Dashboard</h4>
+                <h4>Clinical Dashboard</h4>
                 <p>Design clinician-facing interface</p>
             </div>
             <div class="benefit-item">
-                <h4>🔒 Compliance</h4>
+                <h4>Compliance</h4>
                 <p>Integrate HIPAA, FDA, GDPR standards</p>
             </div>
         </div>

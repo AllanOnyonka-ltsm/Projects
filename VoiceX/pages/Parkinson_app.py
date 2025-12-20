@@ -118,7 +118,7 @@ def load_model():
 # Main app
 def main():
     st.set_page_config(page_title="Parkinson's Voice Analysis", layout="wide")
-    st.title("📱 Parkinson's Disease Voice Analysis")
+    st.title("Parkinson's Disease Voice Analysis")
     st.markdown("""
     **Record a voice sample to analyze Parkinson's disease indicators.**  
     This app extracts 22 voice features associated with Parkinson's disease and provides a risk assessment.
@@ -133,7 +133,7 @@ def main():
         st.session_state.prediction_done = False
 
     # Audio recording section
-    st.subheader("🎤 Voice Recording")
+    st.subheader("Voice Recording")
     col1, col2 = st.columns([2, 1])
     
     with col1:
@@ -219,14 +219,14 @@ def main():
     # Display recording status
     if st.session_state.recording and webrtc_ctx.state.playing:
         st.session_state.audio_frames = st.session_state.audio_frames + webrtc_ctx.audio_receiver.get_frames(timeout=1)
-        st.info("🔴 Recording in progress... Speak clearly into the microphone")
+        st.info("Recording in progress... Speak clearly into the microphone")
     elif not webrtc_ctx.state.playing and st.session_state.audio_frames:
         st.warning("Microphone disconnected. Please check your browser permissions.")
 
     # Results section
     if st.session_state.prediction_done:
         st.markdown("---")
-        st.subheader("📊 Analysis Results")
+        st.subheader("Analysis Results")
         
         # Prediction result
         col1, col2 = st.columns([1, 2])
@@ -234,10 +234,10 @@ def main():
         with col1:
             st.markdown("### **Prediction**")
             if st.session_state.prediction == 1:
-                st.error(f"🔴 HIGH RISK OF PARKINSON'S DISEASE", icon="🚨")
+                st.error(f"HIGH RISK OF PARKINSON'S DISEASE")
                 st.markdown(f"**Confidence:** {st.session_state.probability:.1%}")
             else:
-                st.success(f"🟢 LOW RISK OF PARKINSON'S DISEASE", icon="✅")
+                st.success(f"LOW RISK OF PARKINSON'S DISEASE")
                 st.markdown(f"**Confidence:** {1 - st.session_state.probability:.1%}")
             
             st.markdown("""
@@ -281,7 +281,7 @@ def main():
             for feature in feature_names[:8]:  # Show first 8 features for clarity
                 value = feature_df[feature].values[0]
                 low, high = normal_ranges[feature]
-                status = "⚠️ High" if value > high else "✅ Normal" if low <= value <= high else "⚠️ Low"
+                status = "High" if value > high else "Normal" if low <= value <= high else "Low"
                 comparison_data.append([feature, f"{value:.4f}", f"{low}-{high}", status])
             
             comparison_df = pd.DataFrame(comparison_data, 
@@ -294,13 +294,13 @@ def main():
                     "Status": st.column_config.TextColumn(
                         "Status",
                         help="Comparison to normal ranges",
-                        default="✅",
+                        default="Normal",
                     )
                 }
             )
         
         # Detailed feature explanation
-        with st.expander("🔍 Detailed Feature Explanation"):
+        with st.expander("Detailed Feature Explanation"):
             st.markdown("""
             **Voice Features Associated with Parkinson's:**
             
@@ -317,7 +317,7 @@ def main():
 
     # Information section
     st.markdown("---")
-    st.subheader("ℹ️ About This Tool")
+    st.subheader("About This Tool")
     st.markdown("""
     This application analyzes voice recordings for 22 biomarkers associated with Parkinson's disease:
     
