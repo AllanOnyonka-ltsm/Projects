@@ -65,7 +65,7 @@ def normalize_language(value: str) -> str:
 
 
 def starter_code(title: str, language: str, description: str) -> str:
-    todo_text = f"TODO: implement {description or title}"
+    todo_text = f"TODO: implement {description}"
     todo_quoted = json.dumps(todo_text)
     if language == "python":
         return (
@@ -95,7 +95,7 @@ def starter_code(title: str, language: str, description: str) -> str:
         )
     if language == "rust":
         return f"fn main() {{\n    println!({todo_quoted});\n}}\n"
-    return f"Starter template for {title}\nTODO: implement {description or title}\n"
+    return f"Starter template for {title}\nTODO: implement {description}\n"
 
 
 def iter_markdown_files(source: Path) -> Iterable[Path]:
@@ -107,18 +107,28 @@ def iter_markdown_files(source: Path) -> Iterable[Path]:
             yield path
 
 
+def unique_destination(output_root: Path, slug: str) -> Path:
+    destination = output_root / slug
+    if not destination.exists():
+        return destination
+    suffix = 2
+    while True:
+        candidate = output_root / f"{slug}-{suffix}"
+        if not candidate.exists():
+            return candidate
+        suffix += 1
+
+
 def export_idea(md_file: Path, output_root: Path, overwrite: bool) -> Path:
     raw = md_file.read_text(encoding="utf-8")
     metadata, content = parse_frontmatter(raw)
     title = metadata.get("title") or extract_title(content)
     language = normalize_language(metadata.get("language", "python"))
     description = metadata.get("description") or title
-    destination = output_root / slugify(title)
-
+    base_slug = slugify(title)
+    destination = output_root / base_slug
     if destination.exists() and not overwrite:
-        raise FileExistsError(
-            f"{destination} already exists. Use --overwrite to replace outputs."
-        )
+        destination = unique_destination(output_root, base_slug)
 
     destination.mkdir(parents=True, exist_ok=True)
     starter_name = STARTER_FILES.get(language, "starter.txt")
