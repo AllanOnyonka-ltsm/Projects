@@ -25,6 +25,7 @@ STARTER_FILES = {
     "go": "main.go",
     "rust": "main.rs",
 }
+MAX_UNIQUE_SUFFIX_ATTEMPTS = 1000
 
 
 def parse_frontmatter(markdown: str) -> tuple[dict[str, str], str]:
@@ -111,12 +112,13 @@ def unique_destination(output_root: Path, slug: str) -> Path:
     destination = output_root / slug
     if not destination.exists():
         return destination
-    for suffix in range(2, 1002):
+    for suffix in range(2, 2 + MAX_UNIQUE_SUFFIX_ATTEMPTS):
         candidate = output_root / f"{slug}-{suffix}"
         if not candidate.exists():
             return candidate
     raise RuntimeError(
-        f"Unable to find a unique output directory for slug '{slug}' after 1000 attempts."
+        "Unable to find a unique output directory for slug "
+        f"'{slug}' after checking {MAX_UNIQUE_SUFFIX_ATTEMPTS} sequential suffixes."
     )
 
 
