@@ -111,12 +111,13 @@ def unique_destination(output_root: Path, slug: str) -> Path:
     destination = output_root / slug
     if not destination.exists():
         return destination
-    suffix = 2
-    while True:
+    for suffix in range(2, 1002):
         candidate = output_root / f"{slug}-{suffix}"
         if not candidate.exists():
             return candidate
-        suffix += 1
+    raise RuntimeError(
+        f"Unable to find a unique output directory for slug '{slug}' after 1000 attempts."
+    )
 
 
 def export_idea(md_file: Path, output_root: Path, overwrite: bool) -> Path:
