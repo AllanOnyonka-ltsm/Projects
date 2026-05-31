@@ -71,7 +71,7 @@ def starter_code(title: str, language: str, description: str) -> str:
         return (
             f'"""Starter code for: {title}"""\n\n'
             "def main() -> None:\n"
-            f"    print({todo_text!r})\n\n"
+            f"    print({todo_quoted})\n\n"
             'if __name__ == "__main__":\n'
             "    main()\n"
         )
@@ -102,7 +102,7 @@ def iter_markdown_files(source: Path) -> Iterable[Path]:
     if source.is_file() and source.suffix.lower() == ".md":
         yield source
         return
-    for path in sorted(source.rglob("*.md")):
+    for path in source.rglob("*.md"):
         if path.is_file():
             yield path
 
