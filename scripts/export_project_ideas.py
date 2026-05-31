@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 from pathlib import Path
 from typing import Iterable
@@ -64,24 +65,23 @@ def normalize_language(value: str) -> str:
 
 
 def starter_code(title: str, language: str, description: str) -> str:
+    todo_text = f"TODO: implement {description or title}"
+    todo_json = json.dumps(todo_text)
     if language == "python":
         return (
             f'"""Starter code for: {title}"""\n\n'
             "def main() -> None:\n"
-            f'    print("TODO: implement {description or title}")\n\n'
+            f"    print({todo_text!r})\n\n"
             'if __name__ == "__main__":\n'
             "    main()\n"
         )
     if language == "javascript":
-        return (
-            f"// Starter code for: {title}\n"
-            f'console.log("TODO: implement {description or title}");\n'
-        )
+        return f"// Starter code for: {title}\nconsole.log({todo_json});\n"
     if language == "typescript":
         return (
             f"// Starter code for: {title}\n"
             "function main(): void {\n"
-            f'  console.log("TODO: implement {description or title}");\n'
+            f"  console.log({todo_json});\n"
             "}\n\n"
             "main();\n"
         )
@@ -90,15 +90,11 @@ def starter_code(title: str, language: str, description: str) -> str:
             "package main\n\n"
             'import "fmt"\n\n'
             "func main() {\n"
-            f'    fmt.Println("TODO: implement {description or title}")\n'
+            f"    fmt.Println({todo_json})\n"
             "}\n"
         )
     if language == "rust":
-        return (
-            "fn main() {\n"
-            f'    println!("TODO: implement {description or title}");\n'
-            "}\n"
-        )
+        return f"fn main() {{\n    println!({todo_json});\n}}\n"
     return f"Starter template for {title}\nTODO: implement {description or title}\n"
 
 

@@ -4,7 +4,7 @@ This repository contains experimental projects and solution workspaces.
 
 ## New: project idea exporter
 
-Use `/tmp/workspace/AllanOnyonka-ltsm/Projects/scripts/export_project_ideas.py` to import project ideas from Obsidian or any markdown-based agent workflow.
+Use `scripts/export_project_ideas.py` to import project ideas from Obsidian or any markdown-based agent workflow.
 
 The script reads markdown files and creates one folder per idea with:
 
@@ -15,9 +15,9 @@ The script reads markdown files and creates one folder per idea with:
 ## Usage
 
 ```bash
-python /tmp/workspace/AllanOnyonka-ltsm/Projects/scripts/export_project_ideas.py \
+python scripts/export_project_ideas.py \
   --source /path/to/obsidian-export-or-md-folder \
-  --output /tmp/workspace/AllanOnyonka-ltsm/Projects/project_ideas
+  --output project_ideas
 ```
 
 Add `--overwrite` to reuse existing generated folders.
